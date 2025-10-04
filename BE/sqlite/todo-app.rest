@@ -1,0 +1,46 @@
+### GET /
+GET http://localhost:3000
+### Login with a User POST /auth/login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "username":"test@gmail.com",
+    "password":"1234"
+}
+### Register a User POST /auth/register
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "username":"test@gmail.com",
+    "password":"1234"
+}
+
+### NEED TO UPDATE THE TOKEN EVERY TIME RESTARTS THE SERVER
+
+### FETCH all TODOS GET /todos (protected)
+GET http://localhost:3000/todos
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU5NDkwMTQzLCJleHAiOjE3NTk1NzY1NDN9.prCKP1O_-pUgIA1iDZSbInz9DtM4PdWlRK2StmGT7TQ
+
+### add a Todo POST /todos (protected)
+POST http://localhost:3000/todos
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU5NDkwMTQzLCJleHAiOjE3NTk1NzY1NDN9.prCKP1O_-pUgIA1iDZSbInz9DtM4PdWlRK2StmGT7TQ
+
+{
+    "task":"Walking 2 Hours Per Week"
+}
+
+### Update a TODO  PUT /todos/:id (protected)
+PUT http://localhost:3000/todos/2
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU5NDkwMTQzLCJleHAiOjE3NTk1NzY1NDN9.prCKP1O_-pUgIA1iDZSbInz9DtM4PdWlRK2StmGT7TQ
+
+{
+    "completed":1
+}
+### Delete a TODO  PUT /todos/:id (protected)
+DELETE http://localhost:3000/todos/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU5NDkwMTQzLCJleHAiOjE3NTk1NzY1NDN9.prCKP1O_-pUgIA1iDZSbInz9DtM4PdWlRK2StmGT7TQ
+

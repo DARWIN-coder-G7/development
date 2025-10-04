@@ -1,0 +1,25 @@
+### In order to use this yu have to install Rest Client Extension REST Client
+# Huachao Mao
+# 6,348,843
+# (377)
+# REST Client for Visual Studio Code 
+
+### TEST GET /WEBSITE
+GET http://localhost:8383
+### TEST GET / dashboard WEBSITE
+GET http://localhost:8383/dashboard
+### TEST GET / data API
+GET http://localhost:8383/api/data
+### TEST POST /data API
+POST http://localhost:8383/api/data
+Content-Type: application/json
+
+{
+"name":"Maradona",
+"job":"Footballer"
+}
+### TEST DELETE / data API
+DELETE  http://localhost:8383/api/data
+
+### Above all are from server.js to work on the above please use npm run start 
+# and remove type module from package .json or change module to common js

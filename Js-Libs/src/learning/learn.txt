@@ -1,0 +1,63 @@
+3. Collections (ES6+ specialized structures)
+
+These go beyond objects/arrays:
+
+Map → key–value pairs (keys can be any type, not just strings).
+
+WeakMap → like Map, but keys must be objects and entries are garbage-collected if no references remain.
+
+Set → unique values collection.
+
+WeakSet → like Set, but only objects and garbage-collected.
+
+ArrayBuffer, TypedArray, DataView → raw binary data.
+
+Promise → async result wrapper.
+
+-----------------------------------------------------------------------------------------------
+
+4. Meta & Reflection
+
+Symbol → unique token, can be used as object keys.
+
+Reflect → provides methods for object operations (Reflect.get, Reflect.set, etc.).
+
+Proxy → lets you intercept operations on objects (get, set, etc.).
+---------------------------------------------------------------------------------------------
+
+5. Structured Data
+
+JSON (stringify/parse objects).
+
+Record & Tuple (⚠️ stage-2 proposal, not yet standard):
+
+Record → immutable object with fixed keys.
+
+Tuple → immutable array-like structure.
+These are meant to bring “deep immutability”.
+-------------------------------------------------------------------------------------------------
+
+6. Async & Iteration
+
+Iterator & Iterable protocols (for...of, spread, generators).
+
+Generator (function* yielding values).
+
+AsyncGenerator / AsyncIterator.
+
+Promise, AsyncFunction.
+--------------------------------------------------------------------------------------------------------
+
+7. Other Built-in Objects
+
+Math (math functions).
+
+Intl (internationalization).
+
+Atomics (atomic operations on shared memory).
+
+SharedArrayBuffer (multi-threaded memory).
+
+WeakRef & FinalizationRegistry (advanced memory management).
+
+--------------------------------------------------------------------------------------------------------------
