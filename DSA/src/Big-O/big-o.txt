@@ -1,0 +1,40 @@
+                        Complexity Analysis
+  How much TIME does algorithm need to Finish ?
+  How much SPACE does algorithm need for computation ?
+
+how long time || how much memory || at worst CASE
+Time complexity  || Space Complexity
+
+Big -O -Notation -> helps to find WORST CASE of a code when input size increases very high.
+
+
+         Constant Time:                  o(1)          Always same time a for loop will print first 11 items
+
+         Logarithmic Time:               o(log(n))     Finding an element in a sorted Array (Binary Search)
+
+         Linear Time:                    o(n)          A for loop will print all elements
+
+         Linearithmic Time:              o(nlog(n))    Merge Sort
+
+         Quadric Time:                   o(n^2)        A nested for loop which will run N times
+
+         Cubic Time:                     o(n^3)
+
+         Exponential Time:               o(b^n) ,b>1   Finding All subsets of a set
+
+         Factorial Time:                 o(n!)         Finding All Permutations of a string
+
+    f(n) = 7log(n)^3 + 15n^2 + 2n^3 + 8
+    o(f(n)) = o(n)^3  //Because in the above line n^3 is the biggest 
+
+
+In big o calculation we always drop the constants o(2n) is going to be o(n) 
+ We Always remove the non dominant term 
+
+
+If we want to compare each item with every other item in an Array then the time will grow drastically if the array size grows -O(n^2)
+
+o(log n)
+
+log 2^8   8-size of the array 
+2^3 is equals to 8 so 3 computations or loops will take 
