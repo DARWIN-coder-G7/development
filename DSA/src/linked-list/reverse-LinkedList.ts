@@ -76,13 +76,12 @@ function getByindex(index: number) {
 
 function reverse() {
     let reversed = null;
-    let next;
-    let current:LinkedNode|null = myCustomLinkedList;
+    let current: LinkedNode | null = myCustomLinkedList;
 
     while (current) {
         // save the rest of the objects
 
-        next = current.next;
+        let next: LinkedNode | null = current.next;
         // console.log('Next', next);
         // Assign the previous reversed one to the rest of the linked list like making head as tail here
         current.next = reversed;
@@ -91,7 +90,64 @@ function reverse() {
         reversed = current;
         // console.log('reversed', reversed);
         current = next;
+
+        // Here in the above code current is the pointer he is one who is traversing through the next node of the Linked list
+        // so here the value of the current and next will change evry loop 
+
     }
     return reversed;
 }
 console.log(reverse());
+
+//POINTERS
+
+let user = { name: { value: "Ajith" } };
+// Stack:                        Heap:
+// user ───► 0x100 ───────────► { name: 0x200 }
+//                                 0x200 ───► { value: 'Ajith' }
+
+// next ───► 0x200 (same as user.name)
+
+let anotherset = user;
+
+function analyser() {
+    let next = user.name;
+    user.name = { value: 'kumar' }; // will Not Pollute  // Created New Memory Address
+    anotherset.name.value = 'doctor'; // polluting globally
+    console.log(next); // { value: 'Ajith' }
+    console.log(user.name);  // { value: 'doctor' }
+    console.log(anotherset); // { name: { value: 'doctor' } }
+
+}
+
+analyser();
+
+
+let userData = { name: 'Suman' };
+// Stack:
+// userData  ──►  (address: 0x100)
+
+// Heap:
+// 0x100 ──► { name: 'Suman' }
+
+function reference() {
+    let next = userData.name;
+    //     Stack:
+    // userData ──► 0x100
+    // next = "Suman"
+
+    // Heap:
+    // 0x100 ──► { name: "Suman" }
+    userData.name = 'Kimi Maro';
+    next = 'Gunner';
+    console.log(userData);
+    console.log(next);
+}
+
+// reference();
+
+
+// Variables that point to the same object reference in memory will always see the same updates until one of them is reassigned to a new object.
+
+// so whenever I am updating the value of the keys in an object it will pollute globally
+//  but when I just change or alter the structure it is not affecting globally by assigning
