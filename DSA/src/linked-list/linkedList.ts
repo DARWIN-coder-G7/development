@@ -119,7 +119,7 @@ class LinkedList {
 
         return this.tail?.head;
     }
-    getByIndex(index: number):ListNode|null {
+    getByIndex(index: number): ListNode | null {
         if (!this.head) return null;
         if (index > this.length) return null;
         let temp = this.head;
@@ -162,15 +162,15 @@ class LinkedList {
 
         temp = this.getByIndex(index);
         //Then we can do the value updation like
-         temp!.head = value;
-       
+        temp!.head = value;
+
     }
     insert(index: number, value: any) {
 
         //While Inserting we are going to catch the previous object/element of the index where we have to attach
         // Then we have assign the next of that Particular node to next of our New node
         // Then we have to assign our node as a next to that particular(exactly previous node)
-        
+
         if (index < 0 || index > this.length) return 0;
 
         if (index === 0) {
@@ -181,7 +181,7 @@ class LinkedList {
             this.push(value);
             return 1;
         }
-        let prevNode = this.getByIndex(index-1);
+        let prevNode = this.getByIndex(index - 1);
 
         // let count = 0;
         // while (count < index - 1) {
@@ -194,6 +194,24 @@ class LinkedList {
         prevNode!.next = newNode;
 
         this.length++;
+    }
+    size() {
+        let count = 0;
+        let temp = this.head;
+        while (temp) {
+            temp = temp.next;
+            count++;
+        }
+        return count;
+        return this.length;
+    }
+    clear() {
+        //No need for the below two lines if head itself is null means then javascript will ignore the next references
+        // if(!this.head) return 0;
+        // this.head!.next = null;
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
     }
 }
 
@@ -235,10 +253,10 @@ myLinkedList.set(2, 99);
 // myLinkedList.unShift(100);
 // myLinkedList.shift();
 // myLinkedList.shiftClean();
-myLinkedList.insert(2,198);
+myLinkedList.insert(2, 198);
 console.log('My-Linked_list', myLinkedList);
 // console.log('GET FIRST', myLinkedList.getFirst());
 // console.log('GET LAST', myLinkedList.getLast());
-console.log('GET By Index', myLinkedList.getByIndex(2));
+console.log('Size', myLinkedList.size());
 
 
