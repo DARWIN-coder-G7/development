@@ -27,3 +27,17 @@ Private folder
 ----- why routing through tsx
 Basically in Next.js we are supposed to create our components as a seperate folder away from app Folder
 The reason Behind this is we are seggregating our routes as a seperate folder logic 
+
+Group Routes
+  To Group the routes  we need to create a base folder with name wrapped by 9 and 0 brackets like this (folderName)
+  Then that folder will have so many folders within that so each of it will have a page.tsx file
+
+How to create Layouts
+  Layouts like keeping Header and Footer as static one and the content in between will change dynamically
+  Export a component from layout.tsx or layout.js file
+  That Component takes a children Prop which next js will populate  with your page content
+
+Multiple Root Layouts
+  Route group uses:
+   Organize our project structure without affecting URLs
+   Apply Layouts Selectively to Specific parts of our Application

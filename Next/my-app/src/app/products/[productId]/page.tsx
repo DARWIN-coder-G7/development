@@ -2,7 +2,7 @@
 import { usePathname } from "next/navigation";
 import NotFound from "./not-found";
 
-export default async function ProductDetails({ params }: { params: Promise<{ productId: string }> }) {
+export default function ProductDetails({ params }: { params: Promise<{ productId: string }> }) {
     const pathname = usePathname();
     const productId = pathname.split("/")[2];
     const ReviewId = pathname.split("/")[4];
