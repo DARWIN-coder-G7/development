@@ -38,6 +38,7 @@ How to create Layouts
   That Component takes a children Prop which next js will populate  with your page content
 
 Multiple Root Layouts
+if in case there is a Need that we dont want to show the header and footer for login and few other Routes
   Route group uses:
    Organize our project structure without affecting URLs
    Apply Layouts Selectively to Specific parts of our Application
