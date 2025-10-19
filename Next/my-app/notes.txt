@@ -42,3 +42,30 @@ if in case there is a Need that we dont want to show the header and footer for l
   Route group uses:
    Organize our project structure without affecting URLs
    Apply Layouts Selectively to Specific parts of our Application
+
+Routing MetaData
+   The MetaData API in Next Js is a Poweful feature which will letus define Metadata for each page
+
+   two ways to handle metaDATA in layout or page .tsx files
+     1. export a static -- metadata -- Object
+     2. export a dynamic --  generateMetadata --  function
+
+  But we cant use both the MetaData Object and the function at the same component level
+  Then it is having a hierarchy like angular providers the closer one will be on precedence
+  For example the title on page .tsx will be on the meta tag it will override its parent and root everything
+
+  Then One More Point this Metadata wont work on client components 
+  so we have to use server side components as a wrapper of our client side to achieve metaData
+
+    We can define Our title Either as a string or as a Object 
+      title:"as a string"
+      title:{
+        default:"Will Act as a fallback title when any of the Nested page or layout files Doesnt Specify any titles",
+        template:"%s | Website name" so it will append this template to all sub pages and layouts of where it is attached,
+        absolute:" Just a title when we want to override the template we can Use it"
+      }
+  
+  Link tag
+
+    Replace is directive which will Be helpful when User want to override the history of previous Url 
+    for example when we go to products from blog and then from products to product page back button will help us to land on blog instead of products List
