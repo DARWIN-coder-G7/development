@@ -12,6 +12,7 @@
     height: 100vh;
     background: #222;
   }
+
   .seat-container {
     position: relative;
     display: grid;
@@ -20,18 +21,22 @@
     background: #333;
     padding: 10px;
     border-radius: 8px;
+    user-select: none; /* Prevent text highlight */
   }
+
   .seat {
     width: 40px;
     height: 40px;
     background: #555;
     border-radius: 5px;
     cursor: pointer;
-    user-select: none;
+    transition: background 0.2s;
   }
+
   .seat.selected {
     background: #4caf50;
   }
+
   .selection-box {
     position: absolute;
     border: 2px dashed #4caf50;
@@ -56,9 +61,20 @@
     let isSelecting = false;
     let startX, startY, selectionBox;
 
+    // ✅ Click to toggle individual seat
+    container.addEventListener('click', (e) => {
+      if (isSelecting) return; // prevent click event after dragging
+      if (e.target.classList.contains('seat')) {
+        e.target.classList.toggle('selected');
+      }
+    });
+
     container.addEventListener('mousedown', (e) => {
-      // Only react if the click is inside the container
       if (e.button !== 0) return;
+      if (e.target.classList.contains('seat')) {
+        // Allow click to happen separately — handled in click event
+      }
+
       isSelecting = true;
       const rect = container.getBoundingClientRect();
       startX = e.clientX - rect.left;
@@ -71,6 +87,7 @@
 
     container.addEventListener('mousemove', (e) => {
       if (!isSelecting) return;
+
       const rect = container.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -85,7 +102,7 @@
       selectionBox.style.width = width + 'px';
       selectionBox.style.height = height + 'px';
 
-      // Detect seat overlap
+      // Highlight seats overlapped by the selection box
       document.querySelectorAll('.seat').forEach((seat) => {
         const seatRect = seat.getBoundingClientRect();
         const boxRect = selectionBox.getBoundingClientRect();
@@ -102,7 +119,7 @@
     window.addEventListener('mouseup', () => {
       if (isSelecting) {
         isSelecting = false;
-        selectionBox.remove();
+        selectionBox?.remove();
       }
     });
   </script>
