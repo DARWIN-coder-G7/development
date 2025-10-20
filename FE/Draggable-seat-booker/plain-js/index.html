@@ -1,127 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Seat Selector</title>
-<style>
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #222;
-  }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seat Selector</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #222;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
 
-  .seat-container {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(10, 40px);
-    grid-gap: 5px;
-    background: #333;
-    padding: 10px;
-    border-radius: 8px;
-    user-select: none; /* Prevent text highlight */
-  }
+        .seat-container {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(10, 40px);
+            grid-gap: 5px;
+            background: #333;
+            padding: 10px;
+            border-radius: 8px;
+            user-select: none;
+        }
 
-  .seat {
-    width: 40px;
-    height: 40px;
-    background: #555;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
+        .seat {
+            width: 40px;
+            height: 40px;
+            background: #555;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: grid;
+            place-items: center;
+            color: aliceblue;
+        }
 
-  .seat.selected {
-    background: #4caf50;
-  }
+        .seat.selected {
+            background: #4caf50;
+        }
 
-  .selection-box {
-    position: absolute;
-    border: 2px dashed #4caf50;
-    background: rgba(76, 175, 80, 0.2);
-    pointer-events: none;
-  }
-</style>
+        .selection-box {
+            position: absolute;
+            border: 2px dashed #4caf50;
+            background: rgba(76, 175, 80, 0.2);
+            pointer-events: none;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="seat-container" id="seatContainer"></div>
-
-  <script>
-    const container = document.getElementById('seatContainer');
-
-    // Create seats
-    for (let i = 0; i < 100; i++) {
-      const seat = document.createElement('div');
-      seat.classList.add('seat');
-      container.appendChild(seat);
-    }
-
-    let isSelecting = false;
-    let startX, startY, selectionBox;
-
-    // ✅ Click to toggle individual seat
-    container.addEventListener('click', (e) => {
-      if (isSelecting) return; // prevent click event after dragging
-      if (e.target.classList.contains('seat')) {
-        e.target.classList.toggle('selected');
-      }
-    });
-
-    container.addEventListener('mousedown', (e) => {
-      if (e.button !== 0) return;
-      if (e.target.classList.contains('seat')) {
-        // Allow click to happen separately — handled in click event
-      }
-
-      isSelecting = true;
-      const rect = container.getBoundingClientRect();
-      startX = e.clientX - rect.left;
-      startY = e.clientY - rect.top;
-
-      selectionBox = document.createElement('div');
-      selectionBox.className = 'selection-box';
-      container.appendChild(selectionBox);
-    });
-
-    container.addEventListener('mousemove', (e) => {
-      if (!isSelecting) return;
-
-      const rect = container.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const left = Math.min(x, startX);
-      const top = Math.min(y, startY);
-      const width = Math.abs(x - startX);
-      const height = Math.abs(y - startY);
-
-      selectionBox.style.left = left + 'px';
-      selectionBox.style.top = top + 'px';
-      selectionBox.style.width = width + 'px';
-      selectionBox.style.height = height + 'px';
-
-      // Highlight seats overlapped by the selection box
-      document.querySelectorAll('.seat').forEach((seat) => {
-        const seatRect = seat.getBoundingClientRect();
-        const boxRect = selectionBox.getBoundingClientRect();
-        const overlap = !(
-          seatRect.right < boxRect.left ||
-          seatRect.left > boxRect.right ||
-          seatRect.bottom < boxRect.top ||
-          seatRect.top > boxRect.bottom
-        );
-        seat.classList.toggle('selected', overlap);
-      });
-    });
-
-    window.addEventListener('mouseup', () => {
-      if (isSelecting) {
-        isSelecting = false;
-        selectionBox?.remove();
-      }
-    });
-  </script>
+    <div class="seat-container" id="seatContainer"></div>
+    <div class="seat-container" id="seatContainerone"></div>
+    <seat-selector id="mySeats"
+        data-seats='["A1","A2","A3","B1","B2","B3","B4","C1","C2","C3","C4","D1","D2","D3","D4"]'></seat-selector>
+    <script type="module" src="index.js"></script>
 </body>
+
 </html>
