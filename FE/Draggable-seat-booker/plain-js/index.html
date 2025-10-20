@@ -55,7 +55,11 @@
     <div class="seat-container" id="seatContainer"></div>
     <div class="seat-container" id="seatContainerone"></div>
     <seat-selector id="mySeats"
-        data-seats='["A1","A2","A3","B1","B2","B3","B4","C1","C2","C3","C4","D1","D2","D3","D4"]'></seat-selector>
+        data-seats='["A1","A2","A3","B1","B2","B3","B4","C1","C2","C3","C4","D1","D2","D3","D4"]'>
+        <template>
+            Ticket : {{seat}}
+        </template>
+    </seat-selector>
     <script type="module" src="index.js"></script>
 </body>
 
