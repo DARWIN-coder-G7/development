@@ -1,0 +1,10 @@
+<h3>Subscription Form</h3>
+<form (submit.prevent)="onSubmit()" [formGroup]="signUpForm" >
+<div>
+    <input formControlName="email" type="email" >
+    <br>
+    <button type="submit">
+        Subscribe
+    </button>
+</div>
+</form>
