@@ -2,6 +2,7 @@
 import { Metadata } from "next";
 import NotFound from "./not-found";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 type Props = { params: Promise<{ productId: string }> };
 
@@ -17,6 +18,8 @@ export default async function ProductDetails({ params }: Props) {
 
     const productId = (await params).productId;
     if (Number.parseInt(productId) > 100) {
+        //  Instead Of redirecting to Not found we can redirect to some other by using
+        redirect('/products');
         NotFound();
     }
     return <>

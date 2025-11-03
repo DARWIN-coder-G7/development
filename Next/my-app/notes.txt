@@ -19,7 +19,7 @@ Routing
 layout.tsx
    Even If you delete this file then do npm run dev next js will automatically generate this file
 
-Private folder 
+Private folder  _
   A way to tell Next.js hey this folder is just for internal stuff - don't include it in the routing system.
   The folder and all its subfolders are excluded from routing
   Add an underscore at the start of the folder Name.
@@ -69,3 +69,70 @@ Routing MetaData
 
     Replace is directive which will Be helpful when User want to override the history of previous Url 
     for example when we go to products from blog and then from products to product page back button will help us to land on blog instead of products List
+
+Catching Params from Url
+
+    Async await for server components To access params and search params (query params)
+    use hook for client side components
+
+    page.tsx will have both params and query params but layout.tsx is having acces for params only 
+    For using params in Client side we have to rely on Use hook from React
+
+Templates
+   Templates are also similar share Ui between multiple pages in our APP 
+   But for every page a new instance will Be Generated
+   It should be either template.js or template.tsx 
+
+   We cam simply use template.tsx instead of layout.tsx where we need  
+   If we use both means template will be child of layout then page will be child of template instead of earlier page will be child of layout
+   without template   ----    layout --> page
+   with template      ----    layout --> template --> page
+
+Loading
+   loading.tsx
+
+Error Handling
+  Error.tsx   export an default function named ErrorBoundary will always be a client component
+  can catch the error and display then we can let the user to reload the component
+  Errors always bubble up to find the closest error boundary  (The same concept is almost all Js )
+  but error boundary is not at all capable catching errors thrown by 
+  layout or template on the same folder if the error.tsx is on one folder above then it can handle
+  Because as by hierarchy layout is above
+
+    <Layout>
+        <Template>
+            <ErrorBoundary fallback={<Error />} >
+                <Suspense fallback={<Loading />}>
+                    <ErrorBoundary fallback={<NotFound />}>
+                        <Page/>
+                    </ErrorBoundary>
+                </Suspense>
+            </ErrorBoundary>
+        </Template>
+    </Layout>
+
+Global Error Handling
+   global-error.tsx   to handle errors thrown by layouts are root layouts
+
+Parallel Routes @
+   In next js parallel routes is a concept that lets us Render multiple Pages simultaneously within same Layout
+   So instead of creating a normal nested folder we have to create it with a convention folder name starts with @symbol
+   so that it can be registered as slots all slots within that folder will be available as Props of the layout Folder
+
+   These are mainly for independent route handling  independent loading and error states works like an island
+   Each slot can essentialy behave  as a mini application ,completely with its  own Navigation and State Management
+
+Conditional Routes 
+   Conditional Routes allows us to achieve this while maintaining completely seperate code On the same URl
+   Want to display Dashboard for Authenticated and Login for Others  
+   but truth is its just bull shit
+
+Intercepting Routes (.)
+   Allows us to load a route from another part of the Application within Current Layout
+   so basically the Idea is without loading login page we show it as a popup but if we reload the App Then we can login page 
+   we are updating the url but instead of redirecting to that page we are sjowing it as a popup
+   This bullshit is also same as literally like default.tsx in Parallel routes
+   (.)   to match segements on the same level
+   (..)  to match segments of one level Above
+   (..)  to match segments of two level above
+   (...) to match segments from the Root App directory
